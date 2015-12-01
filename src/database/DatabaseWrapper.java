@@ -1,5 +1,6 @@
 package database;
 
+import com.google.gson.Gson;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import model.Game;
 import model.Gamer;
@@ -461,7 +462,7 @@ public class DatabaseWrapper {
     public boolean createGame(Game game) {
 
         try {
-            // Prepared statement til at tilfoeje en bruger
+            // Prepared statement til at tilfoeje et spil
             PreparedStatement createGame = connection.prepareStatement(dbDriver.createSqlGame());
 
             createGame.setInt(1, game.getHost().getId());
