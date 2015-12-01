@@ -45,16 +45,18 @@ public class Api {
             switch (hashMap.get("code")) {
                 case 0:
                     return Response
-                            .status(400)
+                            .status(403)
                             .entity("{\"message\":\"Wrong username or password\"}")
                             .header("Access-Control-Allow-Headers", "*")
+                            .header("Access-Control-Allow-Origin", "*")
                             .build();
 
                 case 1:
                     return Response
-                            .status(400)
+                            .status(403)
                             .entity("{\"message\":\"Wrong username or password\"}")
                             .header("Access-Control-Allow-Headers", "*")
+                            .header("Access-Control-Allow-Origin", "*")
                             .build();
 
                 case 2:
@@ -62,12 +64,14 @@ public class Api {
                             .status(200)
                             .entity("{\"message\":\"Login successful\", \"userid\":" + hashMap.get("userid") + "}")
                             .header("Access-Control-Allow-Headers", "*")
+                            .header("Access-Control-Allow-Origin", "*")
                             .build();
                 default:
                     return Response
                             .status(500)
                             .entity("{\"message\":\"Unknown error. Please contact Henrik Thorn at: henrik@itkartellet.dk\"}")
                             .header("Access-Control-Allow-Headers", "*")
+                            .header("Access-Control-Allow-Origin", "*")
                             .build();
             }
 
@@ -77,6 +81,7 @@ public class Api {
                     .status(400)
                     .entity("{\"message\":\"Error in JSON\"}")
                     .header("Access-Control-Allow-Headers", "*")
+                    .header("Access-Control-Allow-Origin", "*")
                     .build();
         }
 
@@ -141,6 +146,7 @@ public class Api {
                         .status(200)
                         .entity("{\"message\":\"User was created\"}")
                         .header("Access-Control-Allow-Headers", "*")
+                        .header("Access-Control-Allow-Origin", "*")
                         .build();
             } else {
                 return Response.status(400).entity("{\"message\":\"Username or email already exists\"}").build();
@@ -151,6 +157,7 @@ public class Api {
                     .status(400)
                     .entity("{\"message\":\"Error in JSON\"}")
                     .header("Access-Control-Allow-Headers", "*")
+                    .header("Access-Control-Allow-Origin", "*")
                     .build();
         }
     }
@@ -191,12 +198,14 @@ public class Api {
                         .status(201)
                         .entity(new Gson().toJson(game))
                         .header("Access-Control-Allow-Headers", "*")
+                        .header("Access-Control-Allow-Origin", "*")
                         .build();
             } else {
                 return Response
                         .status(400)
                         .entity("{\"message\":\"something went wrong\"}")
                         .header("Access-Control-Allow-Headers", "*")
+                        .header("Access-Control-Allow-Origin", "*")
                         .build();
             }
         } catch (JsonSyntaxException | NullPointerException e) {
@@ -205,11 +214,12 @@ public class Api {
                     .status(400)
                     .entity("{\"message\":\"Error in JSON\"}")
                     .header("Access-Control-Allow-Headers", "*")
+                    .header("Access-Control-Allow-Origin", "*")
                     .build();
         }
     }
-
-    @PUT
+    //changed from PUT-request to POST
+    @POST
     @Path("/games/join/")
     @Produces("application/json")
     public Response joinGame(String json) {
@@ -228,6 +238,7 @@ public class Api {
                         .status(400)
                         .entity("{\"message\":\"Game closed\"}")
                         .header("Access-Control-Allow-Headers", "*")
+                        .header("Access-Control-Allow-Origin", "*")
                         .build();
             }
         } catch (JsonSyntaxException | NullPointerException e) {
@@ -236,12 +247,13 @@ public class Api {
                     .status(400)
                     .entity("{\"message\":\"Error in JSON\"}")
                     .header("Access-Control-Allow-Headers", "*")
+                    .header("Access-Control-Allow-Origin", "*")
                     .build();
         }
     }
 
 
-    @PUT
+    @POST // changed from PUT to POST
     @Path("/games/start/")
     @Produces("application/json")
     public Response startGame(String json) {
@@ -267,12 +279,13 @@ public class Api {
                     .status(400)
                     .entity("{\"message\":\"Error in JSON\"}")
                     .header("Access-Control-Allow-Headers", "*")
+                    .header("Access-Control-Allow-Origin", "*")
                     .build();
         }
 
     }
 
-    @DELETE //DELETE-request fjernelse af data(spillet slettes)
+    @POST //POST-request fjernelse af data(spillet slettes) (ændret fra DELETE)
     @Path("/games/{gameid}")
     @Produces("appication/json")
     public Response deleteGame(@PathParam("gameid") int gameId) {
@@ -284,12 +297,14 @@ public class Api {
                     .status(200)
                     .entity("{\"message\":\"Game was deleted\"}")
                     .header("Access-Control-Allow-Headers", "*")
+                    .header("Access-Control-Allow-Origin", "*")
                     .build();
         } else {
             return Response
                     .status(400)
                     .entity("{\"message\":\"Failed. Game was not deleted\"}")
                     .header("Access-Control-Allow-Headers", "*")
+                    .header("Access-Control-Allow-Origin", "*")
                     .build();
         }
     }
@@ -306,9 +321,13 @@ public class Api {
     @GET //"GET-request"
     @Path("/scores/")
     @Produces("application/json")
-    public String getHighscore(String data) {
+    public Response getHighscore(String data) {
 
-        return new Gson().toJson(Logic.getHighscore());
+        return Response
+                .status(201)
+                .entity(new Gson().toJson(Logic.getHighscore()))
+                .header("Access-Control-Allow-Origin", "*")
+                .build();
 
     }
 
