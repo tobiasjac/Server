@@ -41,19 +41,23 @@ public class Tui {
 
         HashMap <String, Integer> hashMap = Logic.authenticateUser(enterUsername(), Security.hashing(enterPassword()));
 
-        if (hashMap.get("usertype") == 1) {
-            hashMap.put("code", 0);
-        }
+        try {
+            if (hashMap.get("usertype") == 1) {
+                hashMap.put("code", 0);
+            }
 
-        int code = hashMap.get("code");
-        if (code == 0)
-            miscOut("User does not exist.");
-        else if (code == 1) {
-            miscOut("Wrong password.");
-        } else if (code == 2) {
-            miscOut("Success.");
-            adminIsAuthenticated = true;
-            userMenu();
+            int code = hashMap.get("code");
+            if (code == 0)
+                miscOut("User does not exist.");
+            else if (code == 1) {
+                miscOut("Wrong password.");
+            } else if (code == 2) {
+                miscOut("Success.");
+                adminIsAuthenticated = true;
+                userMenu();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
