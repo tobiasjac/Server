@@ -1,0 +1,8 @@
+"0f7b648","Tobias Jacobsen","Wed, 9 Dec 2015 09:58:58 +0100","Fixed problem with TUI crashing when wrong username is entered when logging in as admin. Surrounded method with try/catch.",	 2 files changed, 16 insertions(+), 13 deletions(-)	
+"e56dfbd","Tobias Jacobsen","Tue, 8 Dec 2015 18:50:07 +0100","created picture of class-diagram to be featured in the rapport",	 1 file changed, 0 insertions(+), 0 deletions(-)	
+"0835020","Tobias Jacobsen","Wed, 2 Dec 2015 21:47:32 +0100","Created UML diagram of server",	 2 files changed, 13 insertions(+)	
+"fc02603","Tobias Jacobsen","Tue, 1 Dec 2015 18:32:40 +0100","deleted README",	 1 file changed, 12 deletions(-)	
+"60715bb","Tobias Jacobsen","Tue, 1 Dec 2015 18:22:33 +0100","deleted unused import",	 1 file changed, 2 insertions(+), 1 deletion(-)	
+"99ea69a","Tobias Jacobsen","Tue, 1 Dec 2015 18:18:41 +0100","Modified SQL-statement getHighscore()",	 1 file changed, 4 insertions(+), 1 deletion(-)	
+"42074d7","Tobias Jacobsen","Tue, 1 Dec 2015 18:15:12 +0100","Changed a lot of the requests from PUT & DELETE to POST. Also added new header's - .header("Access-Control-Allow-Origin", "*") to make sure that it works cross-domain with client",	 1 file changed, 27 insertions(+), 8 deletions(-)	
+"85e2ec1","Tobias Jacobsen","Tue, 1 Dec 2015 18:07:56 +0100","Initial commit",	 16 files changed, 2592 insertions(+)	
